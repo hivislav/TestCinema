@@ -5,38 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import ru.hivislav.testcinema.R
 import ru.hivislav.testcinema.databinding.FragmentMainBinding
-import ru.hivislav.testcinema.model.entities.ActorDTO
-import ru.hivislav.testcinema.model.entities.MovieDTO
+import ru.hivislav.testcinema.viewmodel.AppState
+import ru.hivislav.testcinema.viewmodel.MainFragmentViewModel
 
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    private val actorsData = listOf<ActorDTO>(
-        ActorDTO("Иванов Иван"),
-        ActorDTO("Петров Петр"),
-        ActorDTO("Семёнов Семен"),
-        ActorDTO("Владимиров Владимир"),
-        ActorDTO("Алексеев Алексей"),
-        ActorDTO("Тимуров Тимур"),
-        ActorDTO("Александров Александр"),
-    )
-
-    private val movieData = listOf<MovieDTO>(
-        MovieDTO("Форсаж", "Режиссеров Режиссер", 1992, actorsData),
-        MovieDTO("Матрица", "Режиссеров Режиссер", 1993, actorsData),
-        MovieDTO("Властелин Колец", "Режиссеров Режиссер", 1994, actorsData),
-        MovieDTO("Хоббит", "Режиссеров Режиссер", 2002, actorsData),
-        MovieDTO("Другой Мир", "Режиссеров Режиссер", 2012, actorsData),
-        MovieDTO("Парк Юрского Периода", "Режиссеров Режиссер", 1992, actorsData),
-        MovieDTO("Обитель Зла", "Режиссеров Режиссер", 2022, actorsData),
-        MovieDTO("Топ Ган", "Режиссеров Режиссер", 1995, actorsData),
-        MovieDTO("Мстители", "Режиссеров Режиссер", 1992, actorsData),
-    )
+    private val viewModel: MainFragmentViewModel by lazy {
+        ViewModelProvider(this)[MainFragmentViewModel::class.java]
+    }
 
     private val adapter = MainFragmentAdapter()
 
@@ -49,14 +34,39 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.mainFragmentRecycler.adapter = adapter.apply{
-            setMoviesData(movieData)
+        binding.mainFragmentRecycler.also {
+            it.adapter = adapter
+            binding.mainFragmentRecycler.layoutManager = LinearLayoutManager(requireContext(),
+                                                            LinearLayoutManager.VERTICAL, false)
+            binding.mainFragmentRecycler.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
         }
 
-        binding.mainFragmentRecycler.layoutManager = LinearLayoutManager(requireContext(),
-                                                                        LinearLayoutManager.VERTICAL, false)
-        binding.mainFragmentRecycler.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+        viewModel.getLiveData().observe(viewLifecycleOwner) {
+            renderData(it)
+        }
+        viewModel.getMoviesFromServer()
+
     }
+
+    private fun renderData(appState: AppState) {
+        when (appState) {
+            is AppState.Error -> {
+                binding.loadingLayout.visibility = View.GONE
+                Snackbar.make(binding.root, appState.error.message.toString(), Snackbar.LENGTH_INDEFINITE).setAction(
+                    getString(R.string.snackbar_error_try_again)) {viewModel.getMoviesFromServer()}.show()
+            }
+
+            is AppState.Loading -> {
+                binding.loadingLayout.visibility = View.VISIBLE
+            }
+
+            is AppState.Success -> {
+                binding.loadingLayout.visibility = View.GONE
+                appState.moviesListResponse.let { adapter.setMoviesData(it.items) }
+            }
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
