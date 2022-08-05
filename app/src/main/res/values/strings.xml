@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TestCinema</string>
+    <string name="movie_holder_title_tools_text">Иван Васильевич меняет профессию</string>
+    <string name="movie_holder_year_tools_text">(1973)</string>
+    <string name="movie_holder_director_label">Режиссёр:</string>
+    <string name="movie_holder_actors_label">В фильме снимались:</string>
+    <string name="movie_holder_actors_tools_text">Юрий Яковлев, Леонид Куравлёв, Александр Демьяненко, Наталья Крачковская, Наталья Селезнёва, Наталья Кустинская, Владимир Этуш, Савелий Крамаров, Михаил Пуговкин</string>
 </resources>

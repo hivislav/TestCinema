@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/movieHolderTitle"
+            android:textSize="@dimen/movie_holder_title_text_size"
+            android:textStyle="bold"
+            tools:text="@string/movie_holder_title_tools_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/movieHolderYear"
+            android:textSize="@dimen/movie_holder_title_text_size"
+            android:textStyle="bold"
+            tools:text="@string/movie_holder_year_tools_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/movieHolderTitle"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/movieHolderDirectorLabel"
+            android:textStyle="bold"
+            android:text="@string/movie_holder_director_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/movieHolderTitle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/movieHolderDirector"
+            tools:text="Гайдай Л.И."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/movieHolderTitle"
+            app:layout_constraintStart_toEndOf="@id/movieHolderDirectorLabel"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/movieHolderActorsLabel"
+            android:text="@string/movie_holder_actors_label"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/movieHolderDirectorLabel"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/movieHolderActors"
+            tools:text="@string/movie_holder_actors_tools_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/movieHolderActorsLabel"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
