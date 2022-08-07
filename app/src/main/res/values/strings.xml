@@ -6,4 +6,5 @@
     <string name="movie_holder_actors_label">В фильме снимались:</string>
     <string name="movie_holder_actors_tools_text">Юрий Яковлев, Леонид Куравлёв, Александр Демьяненко, Наталья Крачковская, Наталья Селезнёва, Наталья Кустинская, Владимир Этуш, Савелий Крамаров, Михаил Пуговкин</string>
     <string name="snackbar_error_try_again">Попробуйте снова</string>
+    <string name="year_placeholder">(%1$s)</string>
 </resources>

@@ -3,7 +3,10 @@ package ru.hivislav.testcinema.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ru.hivislav.testcinema.R
 import ru.hivislav.testcinema.databinding.ViewHolderMovieBinding
+import ru.hivislav.testcinema.formattingDirectorsName
+import ru.hivislav.testcinema.getActorsName
 import ru.hivislav.testcinema.model.entities.MovieDTO
 
 class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.MovieViewHolder>() {
@@ -35,9 +38,9 @@ class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.MovieViewHol
                 itemView.apply {
                     with(binding) {
                         movieHolderTitle.text = movie.title
-                        movieHolderYear.text = movie.releaseYear.toString()
-                        movieHolderDirector.text = movie.directorName
-                        movieHolderActors.text = movie.actors.map { it.actorName }.toString()
+                        movieHolderYear.text = resources.getString(R.string.year_placeholder, movie.releaseYear.toString())
+                        movieHolderDirector.text = formattingDirectorsName(movie.directorName)
+                        movieHolderActors.text = getActorsName(movie)
                     }
                 }
             }

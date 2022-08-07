@@ -45,7 +45,6 @@ class MainFragment : Fragment() {
             renderData(it)
         }
         viewModel.getMoviesFromServer()
-
     }
 
     private fun renderData(appState: AppState) {

@@ -27,6 +27,9 @@ class MainFragmentViewModel(
         override fun onResponse(call: Call<MovieListDTO>, response: Response<MovieListDTO>) {
             if (response.isSuccessful) {
                 response.body()?.let {
+                        it.items = it.items.sortedBy {
+                            movieDTO ->  movieDTO.releaseYear
+                        }
                     liveData.postValue(AppState.Success(it))
                 }
             } else {

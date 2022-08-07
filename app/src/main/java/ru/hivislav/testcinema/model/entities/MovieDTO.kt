@@ -4,5 +4,5 @@ data class MovieDTO(
     val title: String,
     val directorName: String,
     val releaseYear: Int,
-    val actors: List<ActorDTO>
+    val actors: Set<ActorDTO>
 )
