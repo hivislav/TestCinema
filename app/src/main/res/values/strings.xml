@@ -7,4 +7,7 @@
     <string name="movie_holder_actors_tools_text">Юрий Яковлев, Леонид Куравлёв, Александр Демьяненко, Наталья Крачковская, Наталья Селезнёва, Наталья Кустинская, Владимир Этуш, Савелий Крамаров, Михаил Пуговкин</string>
     <string name="snackbar_error_try_again">Попробуйте снова</string>
     <string name="year_placeholder">(%1$s)</string>
+    <string name="movie_details_dialog_fragment_placeholder">Фильм %1$s был нажат</string>
+    <string name="movie_details_dialog_fragment_positive_button">Ок</string>
+    <string name="movie_details_dialog_fragment_title">\n</string>
 </resources>

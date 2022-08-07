@@ -23,7 +23,11 @@ class MainFragment : Fragment() {
         ViewModelProvider(this)[MainFragmentViewModel::class.java]
     }
 
-    private val adapter = MainFragmentAdapter()
+    private val adapter = MainFragmentAdapter(object: OnItemViewClickListener{
+        override fun onItemViewClick(title: String) {
+            openFilmMovieDetailsFragment(title)
+        }
+    })
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -66,6 +70,16 @@ class MainFragment : Fragment() {
         }
     }
 
+    interface OnItemViewClickListener{
+        fun onItemViewClick(title: String)
+    }
+
+    private fun openFilmMovieDetailsFragment(title: String) {
+        val manager = requireActivity().supportFragmentManager
+        val bundle = Bundle()
+        bundle.putString(MOVIE_DETAILS_DIALOG_FRAGMENT_EXTRA, title)
+        MovieDetailsDialogFragment.newInstance(bundle).show(manager, "")
+    }
 
     override fun onDestroy() {
         super.onDestroy()

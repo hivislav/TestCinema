@@ -1,5 +1,6 @@
 package ru.hivislav.testcinema.model.entities
 
+
 data class MovieDTO(
     val title: String,
     val directorName: String,

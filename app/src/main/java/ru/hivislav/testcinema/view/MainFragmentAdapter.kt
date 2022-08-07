@@ -9,7 +9,9 @@ import ru.hivislav.testcinema.formattingDirectorsName
 import ru.hivislav.testcinema.getActorsName
 import ru.hivislav.testcinema.model.entities.MovieDTO
 
-class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.MovieViewHolder>() {
+class MainFragmentAdapter(
+    private val onItemViewClickListener: MainFragment.OnItemViewClickListener?
+    ): RecyclerView.Adapter<MainFragmentAdapter.MovieViewHolder>() {
 
     private var moviesData: List<MovieDTO> = listOf()
 
@@ -41,6 +43,10 @@ class MainFragmentAdapter: RecyclerView.Adapter<MainFragmentAdapter.MovieViewHol
                         movieHolderYear.text = resources.getString(R.string.year_placeholder, movie.releaseYear.toString())
                         movieHolderDirector.text = formattingDirectorsName(movie.directorName)
                         movieHolderActors.text = getActorsName(movie)
+                    }
+
+                    setOnClickListener {
+                        onItemViewClickListener?.onItemViewClick(movie.title)
                     }
                 }
             }
