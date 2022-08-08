@@ -2,6 +2,7 @@ package ru.hivislav.testcinema.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.hivislav.testcinema.R
 import ru.hivislav.testcinema.databinding.ViewHolderMovieBinding
@@ -16,8 +17,10 @@ class MainFragmentAdapter(
     private var moviesData: List<MovieDTO> = listOf()
 
     fun setMoviesData(data: List<MovieDTO>) {
+        val diffCallback = MainFragmentDiffCallback(moviesData, data)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
         moviesData = data
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
