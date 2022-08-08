@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="movie_holder_title_text_size">16sp</dimen>
+    <dimen name="movie_holder_padding">2dp</dimen>
+    <dimen name="movie_holder_margin_inside_item">4dp</dimen>
 </resources>

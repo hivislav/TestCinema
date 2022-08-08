@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/movieHolderCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="@android:color/white"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="@dimen/movie_holder_padding"
+    android:layout_marginLeft="@dimen/movie_holder_margin_inside_item"
+    android:layout_marginRight="@dimen/movie_holder_margin_inside_item"
+    android:layout_marginTop="@dimen/movie_holder_margin_inside_item"
+    android:layout_marginBottom="@dimen/movie_holder_margin_inside_item"
+    app:cardCornerRadius="@dimen/movie_holder_margin_inside_item"
+    app:cardElevation="@dimen/movie_holder_margin_inside_item"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/movie_holder_padding">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalStartGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.02"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalEndGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.98"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movieHolderTitle"
@@ -18,7 +44,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/verticalStartGuideline"
+            app:layout_constraintEnd_toStartOf="@id/movieHolderYear"
+            app:layout_constraintHorizontal_chainStyle="packed"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movieHolderYear"
@@ -27,8 +55,10 @@
             tools:text="@string/movie_holder_year_tools_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/movie_holder_margin_inside_item"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/movieHolderTitle"/>
+            app:layout_constraintStart_toEndOf="@id/movieHolderTitle"
+            app:layout_constraintEnd_toEndOf="@id/verticalEndGuideline"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movieHolderDirectorLabel"
@@ -37,13 +67,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/movieHolderTitle"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/verticalStartGuideline"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movieHolderDirector"
-            tools:text="Гайдай Л.И."
+            tools:text="@string/movie_holder_director_tools_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/movie_holder_margin_inside_item"
             app:layout_constraintTop_toBottomOf="@id/movieHolderTitle"
             app:layout_constraintStart_toEndOf="@id/movieHolderDirectorLabel"/>
 
@@ -54,15 +85,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/movieHolderDirectorLabel"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/verticalStartGuideline"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movieHolderActors"
             tools:text="@string/movie_holder_actors_tools_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/movieHolderActorsLabel"
-            app:layout_constraintStart_toStartOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            app:layout_constraintStart_toStartOf="@id/verticalStartGuideline"
+            app:layout_constraintEnd_toStartOf="@id/verticalEndGuideline"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+
 
